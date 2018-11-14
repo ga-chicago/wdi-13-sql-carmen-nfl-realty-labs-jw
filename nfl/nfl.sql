@@ -200,23 +200,56 @@
 
 -- 14. The player with the lowest salary on the Green Bay Packers
 
-------- Not working yet -------v
-SELECT players.name, salary
-	FROM players
-	INNER JOIN teams ON teams.id = players.team_id
-	WHERE (salary = (SELECT MIN(salary) FROM players)) AND teams.name = 'Green Bay Packers';
+------- Wrong but I feel I'm not far... -------v
+-- SELECT players.name, salary
+-- 	FROM players
+-- 	INNER JOIN teams ON teams.id = players.team_id
+-- 	WHERE (salary = (SELECT MIN(salary) FROM players)) AND teams.name = 'Green Bay Packers';
 
-------- Too easy ? -------v
-SELECT players.name, salary
-	FROM players
-	INNER JOIN teams ON teams.id = players.team_id
-	WHERE teams.name = 'Green Bay Packers'
-	ORDER BY salary ASC
-	LIMIT 1;
+------- Works but not 'thorough' -------v
+-- SELECT players.name, salary
+-- 	FROM players
+-- 	INNER JOIN teams ON teams.id = players.team_id
+-- 	WHERE teams.name = 'Green Bay Packers'
+-- 	ORDER BY salary ASC
+-- 	LIMIT 1;
 
+-- >>>       name      | salary 
+-- >>> ----------------+--------
+-- >>>  Shaky Smithson | 390000
 
 ----------------------------------------------------------------------
 ------------------------------ COMMIT 4 ------------------------------
 ------------- "Commit: NFL - Finished the nfl queries" ---------------
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
+
+-- Hungry for more?
+-- This data seems dated. Add a column to both tables with the year, using DATE (as opposed to just entering a number).
+-- Record your update, in the nfl sql file, and do a query for one row and copy paste it to show the update.
+
+
+-- ALTER TABLE players
+-- ADD COLUMN year DATE;
+
+-- ALTER TABLE teams
+-- ADD COLUMN year DATE;
+
+-- SELECT players.name, teams.name, players.year AS p_year, teams.year AS t_year
+-- 	FROM players
+-- 	INNER JOIN teams ON teams.id = players.team_id
+-- 	WHERE teams.name = 'Buffalo Bills';
+
+-- >>>        name        |     name      | p_year | t_year 
+-- >>> --------------------+---------------+--------+--------
+-- >>>  Mario Williams     | Buffalo Bills |        | 
+-- >>>  Drayton Florence   | Buffalo Bills |        | 
+-- >>>  ...
+-- >>>  Kamar Aiken        | Buffalo Bills |        | 
+-- >>>  Michael Jasper     | Buffalo Bills |        | 
+-- >>> (59 rows)
+
+
+
+
+
