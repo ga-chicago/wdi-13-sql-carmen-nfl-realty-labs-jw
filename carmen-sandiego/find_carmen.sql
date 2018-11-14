@@ -115,24 +115,25 @@ SELECT * FROM COUNTRY LIMIT 1;
 -- So I'm off to add one to the population I find
 -- In a city of ninety-one thousand and now, eighty five.
 
-
 -- We're counting on you, gumshoe. Find out where she's headed, send us the info, and we'll be sure to meet her at the gates with bells on.
 
--- Look for a city with 91084 or 91085 inhab
+-- Look for a city with 91084 (no way they'll have done a census by the time she's settled)
 SELECT name AS city_name, countrycode, population
 	FROM CITY
-	WHERE population = 91084 OR population = 91085;
+	WHERE population = 91084;
 
 -- >>>   city_name   | countrycode | population 
 -- >>> --------------+-------------+------------
 -- >>>  Santa Monica | USA         |      91084
+
+-- She's in _____ Santa Monica _____!
+
 
 ----------------------------------------------------------------------
 ------------------------------ COMMIT 2 ------------------------------
 -- "Commit: CARMEN SANDIEGO - I found Carmen Sandiego"
 ----------------------------------------------------------------------
 
--- She's in ____________________________!
 
 -- Hungry for more?
 -- Some of the entries have gotten a bit messed up. For example, the capital of Brazil is not `Brasï¿½lia`, rather, it is Brasília. Update this entry to the correct spelling. Record your update, in the find_carmen.sql file (below `I found Carmen`), and do a query for one row and copy paste it to show the update.
