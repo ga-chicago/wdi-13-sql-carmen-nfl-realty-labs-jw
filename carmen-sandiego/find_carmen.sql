@@ -27,9 +27,9 @@ SELECT * FROM COUNTRY LIMIT 1;
 -- Clue #1: We recently got word that someone fitting Carmen Sandiego's description has been traveling through Southern Europe. She's most likely traveling someplace where she won't be noticed, so find the least populated country in Southern Europe, and we'll start looking for her there.
 
 -- SELECT MIN(population), name
--- 	FROM country
--- 	WHERE country.region = 'Southern Europe'
--- 	GROUP BY country.name
+-- 	FROM COUNTRY
+-- 	WHERE COUNTRY.region = 'Southern Europe'
+-- 	GROUP BY COUNTRY.name
 -- 	ORDER BY MIN(population)
 -- 	LIMIT 1;
 
@@ -80,12 +80,28 @@ SELECT * FROM COUNTRY LIMIT 1;
 
 -- Clue #5: Oh no, she pulled a switch – there are two cities with very similar names, but in totally different parts of the globe! She's headed to South America as we speak; go find a city whose name is like the one we were headed to, but doesn't end the same. Find out the city, and do another search for what country it's in. Hurry!
 
+-- SELECT CITY.name AS city, COUNTRY.name as country 
+-- 	FROM CITY
+-- 	INNER JOIN COUNTRY ON COUNTRY.code = CITY.countrycode 
+-- 	WHERE COUNTRY.region = 'South America' AND CITY.name LIKE 'San M%'
+-- 	ORDER BY CITY.name;
 
+-- >>>           city           |  country  
+-- >>> -------------------------+-----------
+-- >>>  San Miguel              | Argentina  <<<<<< I'm assuming this is the one we want
+-- >>>  San Miguel de Tucum�n   | Argentina
 
 
 -- Clue #6: We're close! Our South American agent says she just got a taxi at the airport, and is headed towards the capital! Look up the country's capital, and get there pronto! Send us the name of where you're headed and we'll follow right behind you!
 
+-- SELECT COUNTRY.name AS country, CITY.name AS capital
+-- 	FROM CITY
+-- 	INNER JOIN COUNTRY ON COUNTRY.code = CITY.countrycode 
+-- 	WHERE COUNTRY.name = 'Argentina' AND COUNTRY.capital = CITY.id;
 
+-- >>>   country  |   capital    
+-- >>> -----------+--------------
+-- >>>  Argentina | Buenos Aires
 
 
 -- Clue #7: She knows we're on to her – her taxi dropped her off at the international airport, and she beat us to the boarding gates. We have one chance to catch her, we just have to know where she's heading and beat her to the landing dock.
@@ -101,6 +117,15 @@ SELECT * FROM COUNTRY LIMIT 1;
 
 
 -- We're counting on you, gumshoe. Find out where she's headed, send us the info, and we'll be sure to meet her at the gates with bells on.
+
+-- Look for a city with 91084 or 91085 inhab
+SELECT name AS city_name, countrycode, population
+	FROM CITY
+	WHERE population = 91084 OR population = 91085;
+
+-- >>>   city_name   | countrycode | population 
+-- >>> --------------+-------------+------------
+-- >>>  Santa Monica | USA         |      91084
 
 ----------------------------------------------------------------------
 ------------------------------ COMMIT 2 ------------------------------
