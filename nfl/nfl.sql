@@ -198,15 +198,9 @@
 -- >>> --------------
 -- >>>      74179466
 
+
 -- 14. The player with the lowest salary on the Green Bay Packers
 
-------- Wrong but I feel I'm not far... -------v
--- SELECT players.name, salary
--- 	FROM players
--- 	INNER JOIN teams ON teams.id = players.team_id
--- 	WHERE (salary = (SELECT MIN(salary) FROM players)) AND teams.name = 'Green Bay Packers';
-
-------- Works but not 'thorough' -------v
 -- SELECT players.name, salary
 -- 	FROM players
 -- 	INNER JOIN teams ON teams.id = players.team_id

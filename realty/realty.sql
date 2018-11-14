@@ -27,6 +27,7 @@ CREATE TABLE offices(
 	address VARCHAR(255) NOT NULL,
 	bathrooms SMALLINT,
 	kitchen BOOLEAN,
+	cubicles SMALLINT,
 	occupied BOOLEAN,
 	square_feet NUMERIC,
 	price NUMERIC,
@@ -58,12 +59,12 @@ VALUES( 1, 1, '2273 NW 65th Street UNIT Reer Miami, FL', false, 600, 1150);
 INSERT INTO apartments (bedrooms , bathrooms, address, tenant, occupied, square_feet, price)
 VALUES(4, 2, '18912 E 44th Place Denver, CO 80249', 'Denise Ingram', true, 2008, 319000);
 
-INSERT INTO offices (address, bathrooms, kitchen, occupied, square_feet, price)
-VALUES('220 Davidson Ave, Somerset, NJ, 89360', 4, true, false, 5000, 10000);
-INSERT INTO offices (address, bathrooms, kitchen, occupied, square_feet, price, company)
-VALUES('1825 Fort View Rd, Austin, TX 78704', 6, true, true, 141000, 6000, 'Dragoncorp');
-INSERT INTO offices (address, bathrooms, kitchen, occupied, square_feet, price, company)
-VALUES('264 Leopoldo Walk, Lansing , MI, 76399', 2, false, true, 2500, 5000, 'MinSup');
+INSERT INTO offices (address, bathrooms, kitchen, cubicles, occupied, square_feet, price)
+VALUES('220 Davidson Ave, Somerset, NJ, 89360', 4, true, 28, false, 5000, 10000);
+INSERT INTO offices (address, bathrooms, kitchen, cubicles, occupied, square_feet, price, company)
+VALUES('1825 Fort View Rd, Austin, TX 78704', 6, true, 375, true, 141000, 6000, 'Dragoncorp');
+INSERT INTO offices (address, bathrooms, kitchen, cubicles, occupied, square_feet, price, company)
+VALUES('264 Leopoldo Walk, Lansing , MI, 76399', 2, false, 124, true, 2500, 5000, 'MinSup');
  
 INSERT INTO storefronts (address, occupied, price, kitchen, square_feet, owner, outdoor_seating)
 VALUES('55946 Bartoletti Falls, Gravity Falls, UT, 10374', true, 10374, true, 2508, 'Mr. Tenenbaum', true);
@@ -79,32 +80,97 @@ VALUES('00840 MacGyver Park, North Jeramy, AL 23331', true, 26064, false, 3471, 
 ----------------------------------------------------------------------
 
 
-
 -- 1. The average square footage of all offices.
+
+-- SELECT AVG(square_feet) FROM offices;
+
+-- >>>         avg         
+-- >>> --------------------
+-- >>>  49500.000000000000
 
 
 -- 2. The total number of apartments.
 
+-- SELECT COUNT(*) AS total_number_of_apartments FROM apartments;
+
+-- >>>  total_number_of_apartments 
+-- >>> ----------------------------
+-- >>>                           3
+
 
 -- 3. The apartments where there is no tenant
+
+-- SELECT address, tenant FROM apartments WHERE tenant IS NULL;
+
+-- >>>                  address                 | tenant 
+-- >>> -----------------------------------------+--------
+-- >>>  2273 NW 65th Street UNIT Reer Miami, FL | 
 
 
 -- 4. The names of all of the companies
 
+-- SELECT company FROM offices WHERE company IS NOT NULL;
+
+-- >>>   company   
+-- >>> ------------
+-- >>>  Dragoncorp
+-- >>>  MinSup
+
 
 -- 5. The number of cubicles and bathrooms in the 3rd office
+
+-- SELECT cubicles, bathrooms FROM offices WHERE id = 3;
+
+-- >>>  cubicles | bathrooms 
+-- >>> ----------+-----------
+-- >>>       124 |         2
 
 
 -- 6. The storefronts that have kitchens
 
+-- SELECT address, kitchen FROM storefronts WHERE kitchen = TRUE;
+
+-- >>>                      address                      | kitchen 
+-- >>> --------------------------------------------------+---------
+-- >>>  55946 Bartoletti Falls, Gravity Falls, UT, 10374 | t
+-- >>>  380 Lavonne Loaf, Lulufurt, NY 61381             | t
+
 
 -- 7. The storefront with the highest square footage and outdoor seating
+
+-- SELECT address, square_feet, outdoor_seating
+-- 	FROM storefronts
+-- 	WHERE outdoor_seating = TRUE
+-- 	ORDER BY square_feet DESC
+-- 	LIMIT 1;
+
+-- >>>                address                | square_feet | outdoor_seating 
+-- >>> --------------------------------------+-------------+-----------------
+-- >>>  380 Lavonne Loaf, Lulufurt, NY 61381 |        5708 | t
 
 
 -- 8. The office with the lowest number of cubicles
 
+-- SELECT address, cubicles 
+-- 	FROM offices
+-- 	ORDER BY cubicles ASC
+-- 	LIMIT 1;
+
+-- >>>                 address                | cubicles 
+-- >>> ---------------------------------------+----------
+-- >>>  220 Davidson Ave, Somerset, NJ, 89360 |       28
+
 
 -- 9. The office with the most cubicles and bathrooms
+
+-- SELECT address, cubicles, bathrooms
+-- 	FROM offices
+-- 	ORDER BY (cubicles + bathrooms) DESC
+-- 	LIMIT 1;
+
+-- >>>                address               | cubicles | bathrooms 
+-- >>> -------------------------------------+----------+-----------
+-- >>>  1825 Fort View Rd, Austin, TX 78704 |      375 |         6
 
 
 ----------------------------------------------------------------------
