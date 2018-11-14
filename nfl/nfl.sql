@@ -54,10 +54,11 @@
 
 -- SELECT COUNT(*)
 -- 	FROM players;
-	
+
 -- >>>  count 
 -- >>> -------
 -- >>>   1532
+
 
 ----------------------------------------------------------------------
 ------------------------------ COMMIT 2 ------------------------------
@@ -67,14 +68,68 @@
 
 -- 5. The team names and head coaches of the NFC North and AFC East
 
+-- SELECT name, head_coach, conference, division
+-- 	FROM teams
+-- 	WHERE (conference = 'NFC' AND division = 'North') OR (conference = 'AFC' AND division = 'East');
+
+-- >>>          name         |   head_coach   | conference | division 
+-- >>> ----------------------+----------------+------------+----------
+-- >>>  Buffalo Bills        | Doug Marrone   | AFC        | East
+-- >>>  Miami Dolphins       | Joe Philbin    | AFC        | East
+-- >>>  New England Patriots | Bill Belichick | AFC        | East
+-- >>>  New York Jets        | Rex Ryan       | AFC        | East
+-- >>>  Chicago Bears        | Marc Trestman  | NFC        | North
+-- >>>  Detroit Lions        | Jim Caldwell   | NFC        | North
+-- >>>  Green Bay Packers    | Mike McCarthy  | NFC        | North
+-- >>>  Minnesota Vikings    | Mike Zimmer    | NFC        | North
+
 
 -- 6. The 50 players with the highest salaries
 
+-- SELECT name, salary
+-- 	FROM players
+-- 	ORDER BY salary DESC
+-- 	LIMIT 50;
+-- >>>      name           |  salary  
+-- >>> -------------------------+----------
+-- >>> Peyton Manning          | 18000000
+-- >>> Drew Brees              | 15760000
+-- >>> ...
+-- >>> Gary Brackett           |  7200000
+-- >>> Ed Reed                 |  7200000
+-- >>> (50 rows)
 
--- 7. The average salary of all NFL players
 
+-- >>> 7. The average salary of all NFL players
+
+-- SELECT AVG(salary)
+-- 	FROM players;
+
+-- >>>          avg          
+-- >>> ----------------------
+-- >>>  1579692.539817232376
 
 -- 8. The names and positions of players with a salary above 10_000_000
+
+-- SELECT name, position, salary
+-- 	FROM players
+-- 	WHERE salary > 10000000
+-- 	ORDER BY salary DESC;
+
+-- >>>           name           | position |  salary  
+-- >>> -------------------------+----------+----------
+-- >>>  Peyton Manning          | QB       | 18000000
+-- >>>  Drew Brees              | QB       | 15760000
+-- >>>  ...
+-- >>>  Chris Long              | DE       | 10310000
+-- >>>  Philip Rivers           | QB       | 10200000
+-- >>> (21 rows)
+
+----------------------------------------------------------------------
+------------------------------ COMMIT 3 ------------------------------
+----------- "Commit: NFL - wow there's a lot of nfl data" ------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
 
 
 -- 9. The player with the highest salary in the NFL
