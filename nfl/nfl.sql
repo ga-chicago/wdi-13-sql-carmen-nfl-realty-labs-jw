@@ -2,18 +2,68 @@
 ------------------------------ COMMIT 1 ------------------------------
 --"Commit: NFL - I seeded the database with the players and teams info"
 ----------------------------------------------------------------------
+----------------------------------------------------------------------
 
 -- 1. List the names of all NFL teams'
+
+-- SELECT DISTINCT name
+-- 	FROM teams;
+
+-- >>> 		  name         
+-- >>> --------------------
+-- >>> New England Patriots
+-- >>> New Orleans Saints
+-- >>> ...
+-- >>> Philadelphia Eagles
+-- >>> San Diego Chargers
+-- >>> (32 rows)
 
 
 -- 2. List the stadium name and head coach of all NFC teams
 
+-- SELECT name, head_coach, stadium, conference
+-- 	FROM teams
+-- 	WHERE conference = 'NFC';
+
+-- >>>          name         |  head_coach   |            stadium            | conference 
+-- >>> ----------------------+---------------+-------------------------------+------------
+-- >>>  Dallas Cowboys       | Jason Garrett | AT&T Stadium                  | NFC
+-- >>>  New York Giants      | Tom Coughlin  | MetLife Stadium               | NFC
+-- >>>  Philadelphia Eagles  | Chip Kelly    | Lincoln Financial Field       | NFC
+-- >>> ...
+-- >>>  San Francisco 49ers  | Jim Harbaugh  | Levis Stadium                 | NFC
+-- >>>  Seattle Seahawks     | Pete Carroll  | CenturyLink Field             | NFC
+-- >>> (16 rows)
+
 
 -- 3. List the head coaches of the AFC South
+
+-- SELECT name, head_coach, conference, division
+-- 	FROM teams
+-- 	WHERE conference = 'AFC' AND division = 'South';
+
+-- >>>          name         |   head_coach   | conference | division 
+-- >>> ----------------------+----------------+------------+----------
+-- >>>  Houston Texans       | Bill OBrien    | AFC        | South
+-- >>>  Indianapolis Colts   | Chuck Pagano   | AFC        | South
+-- >>>  Jacksonville Jaguars | Gus Bradley    | AFC        | South
+-- >>>  Tennessee Titans     | Ken Whisenhunt | AFC        | South
 
 
 -- 4. The total number of players in the NFL
 
+-- SELECT COUNT(*)
+-- 	FROM players;
+	
+-- >>>  count 
+-- >>> -------
+-- >>>   1532
+
+----------------------------------------------------------------------
+------------------------------ COMMIT 2 ------------------------------
+--------------- "Commit: NFL - queried some NFL stuff" ---------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
 
 -- 5. The team names and head coaches of the NFC North and AFC East
 
