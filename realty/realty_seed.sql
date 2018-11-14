@@ -10,3 +10,11 @@ INSERT INTO storefronts (address, occupied, price, kitchen, sq_footage, outdoor_
 
 INSERT INTO storefronts (address, occupied, price, kitchen, sq_footage, outdoor_seating, owner)
 	VALUES ('22 South West St', true, 5000000, true, 9000, true, 'Donald Glover');
+INSERT INTO offices (sq_footage, cubicles, bathrooms, company_name)
+	VALUES (10000, 10, 2, 'General Assembly');
+
+INSERT INTO offices (sq_footage, cubicles, bathrooms, company_name)
+	VALUES (50000, 1000, 60, 'Google');
+
+INSERT INTO offices (sq_footage, cubicles, bathrooms, company_name)
+	VALUES (25000, 250, 20, 'Company, Inc.');
