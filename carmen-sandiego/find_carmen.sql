@@ -142,7 +142,11 @@ SELECT name AS city_name, countrycode, population
 -- SET name = 'Brasília'
 -- WHERE name = 'Bras�lia' -- (WHERE name = 'Brasï¿½lia' DOES NOT WORK)
 -- RETURNING name;
+-- >>>    name    
+-- >>> -----------
+-- >>>  Brasília
 
+------------ To be sure ------------ v
 -- SELECT COUNTRY.name AS country, CITY.name AS capital
 -- 	FROM CITY
 -- 	INNER JOIN COUNTRY ON COUNTRY.code = CITY.countrycode 
@@ -151,5 +155,35 @@ SELECT name AS city_name, countrycode, population
 -- >>>  country |  capital  
 -- >>> ---------+-----------
 -- >>>  Brazil  | Brasília
+------------ To be sure ------------ 
+
 
 -- Update any other two entries that have gotten messed up.
+
+-- SELECT COUNTRY.name AS country, CITY.name AS capital
+-- 	FROM CITY
+-- 	INNER JOIN COUNTRY ON COUNTRY.code = CITY.countrycode 
+-- 	WHERE COUNTRY.name = 'France';
+
+-- UPDATE CITY
+-- SET name = 'Nîmes'
+-- WHERE name = 'N�mes'
+-- RETURNING name;
+-- >>>   name  
+-- >>> --------
+-- >>>  Nîmes
+
+-- UPDATE CITY
+-- SET name = 'Besançon'
+-- WHERE name = 'Besan�on'
+-- RETURNING name;
+-- >>>    name    
+-- >>> -----------
+-- >>>  Besançon
+
+
+
+
+
+
+
