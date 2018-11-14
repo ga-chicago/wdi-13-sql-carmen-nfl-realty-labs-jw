@@ -138,4 +138,18 @@ SELECT name AS city_name, countrycode, population
 -- Hungry for more?
 -- Some of the entries have gotten a bit messed up. For example, the capital of Brazil is not `Brasï¿½lia`, rather, it is Brasília. Update this entry to the correct spelling. Record your update, in the find_carmen.sql file (below `I found Carmen`), and do a query for one row and copy paste it to show the update.
 
+-- UPDATE CITY
+-- SET name = 'Brasília'
+-- WHERE name = 'Bras�lia' -- (WHERE name = 'Brasï¿½lia' DOES NOT WORK)
+-- RETURNING name;
+
+-- SELECT COUNTRY.name AS country, CITY.name AS capital
+-- 	FROM CITY
+-- 	INNER JOIN COUNTRY ON COUNTRY.code = CITY.countrycode 
+-- 	WHERE COUNTRY.name = 'Brazil' AND COUNTRY.capital = CITY.id;
+
+-- >>>  country |  capital  
+-- >>> ---------+-----------
+-- >>>  Brazil  | Brasília
+
 -- Update any other two entries that have gotten messed up.
