@@ -131,20 +131,92 @@
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
-
 -- 9. The player with the highest salary in the NFL
+
+-- SELECT name, salary
+-- 	FROM players
+-- 	WHERE salary = (SELECT MAX(salary) FROM players);
+
+-- >>>       name      |  salary  
+-- >>> ----------------+----------
+-- >>>  Peyton Manning | 18000000
 
 
 -- 10. The name and position of the first 100 players with the lowest salaries
 
+-- SELECT name, position, salary
+-- 	FROM players
+-- 	ORDER BY salary ASC
+-- 	LIMIT 100;
+
+-- >>>          name          | position | salary 
+-- >>> ------------------------+----------+--------
+-- >>>  Phillip Dillard        |          | 369480
+-- >>>  Eric Kettani           | RB       | 390000
+-- >>>  ...
+-- >>>  Chris Hairston         | T        | 465000
+-- >>>  Andrew Hawkins         | WR       | 465000
+-- >>> (100 rows)
+
 
 -- 11. The average salary for a DE in the nfl
+
+-- SELECT AVG(salary)
+-- 	FROM players
+-- 	WHERE position = 'DE';
+
+-- >>>          avg          
+-- >>> ----------------------
+-- >>>  2161326.377049180328
 
 
 -- 12. The names of all the players on the Buffalo Bills
 
+-- SELECT players.name, teams.name
+-- 	FROM players
+-- 	INNER JOIN teams ON teams.id = players.team_id
+-- 	WHERE teams.name = 'Buffalo Bills';
+
+-- >>>        name        |     name      
+-- >>> --------------------+---------------
+-- >>>  Mario Williams     | Buffalo Bills
+-- >>>  Drayton Florence   | Buffalo Bills
+-- >>>  ...
+-- >>>  Kamar Aiken        | Buffalo Bills
+-- >>>  Michael Jasper     | Buffalo Bills
+-- >>> (59 rows)
+
 
 -- 13. The total salary of all players on the New York Giants
 
+-- SELECT SUM(salary) AS total_salary
+-- 	FROM players
+-- 	INNER JOIN teams ON teams.id = players.team_id
+-- 	WHERE teams.name = 'New York Giants';
+
+-- >>>  total_salary 
+-- >>> --------------
+-- >>>      74179466
 
 -- 14. The player with the lowest salary on the Green Bay Packers
+
+------- Not working yet -------v
+SELECT players.name, salary
+	FROM players
+	INNER JOIN teams ON teams.id = players.team_id
+	WHERE (salary = (SELECT MIN(salary) FROM players)) AND teams.name = 'Green Bay Packers';
+
+------- Too easy ? -------v
+SELECT players.name, salary
+	FROM players
+	INNER JOIN teams ON teams.id = players.team_id
+	WHERE teams.name = 'Green Bay Packers'
+	ORDER BY salary ASC
+	LIMIT 1;
+
+
+----------------------------------------------------------------------
+------------------------------ COMMIT 4 ------------------------------
+------------- "Commit: NFL - Finished the nfl queries" ---------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
